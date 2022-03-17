@@ -14,7 +14,7 @@ console.log(data);
 window.addEventListener("load", () => {
   renderTweets();
   initSearchEvent()
-  renderFiltered()
+  
 });
 
 // Renderizar Tweets
