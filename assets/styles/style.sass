@@ -1,0 +1,183 @@
+// @import "partials/_aside"
+
+*
+  // border: 1px solid pink
+
+body
+  @apply bg-gray-900
+
+// layout
+.twitter
+  @apply min-h-screen max-w-[1180px] w-full mx-auto
+  @apply grid grid-cols-[240px_1fr_370px] grid-rows-[auto_1fr]
+
+  .logo
+  .title
+    @apply border-x border-gray-400
+  .search
+  .menu
+  .button_twit
+  .feed
+    @apply border-x border-gray-400
+  .aside
+
+// logo
+.logo
+  @apply flex items-center
+  img
+
+// title
+.title
+  @apply flex justify-between items-center
+  .title_content
+    @apply text-xl font-bold
+    @apply text-white
+    @apply pl-6 py-3
+  .title_icon
+    @apply pr-6
+    img
+
+// search
+.search
+  @apply m-4
+  .search_input
+    @apply flex justify-between items-center
+    @apply ml-6 px-2 rounded-full
+    @apply bg-slate-700
+    @apply p-4
+    .icon
+      @apply text-gray-400
+      @apply flex items-center
+      @apply px-4
+    .search_input_text
+      @apply w-full
+      @apply bg-slate-700
+      @apply text-gray-400
+      @apply outline-none
+
+//menu
+.menu
+  @apply mr-4
+  .menu_items
+    .menu_item
+      @apply py-1
+      &:first-child
+        @apply font-bold
+      a
+        @apply flex items-center
+        @apply py-3
+        .icon
+          @apply text-xl
+          img
+        .label
+          @apply pl-5
+          @apply text-xl
+          @apply text-white
+
+  .twit
+    @apply flex
+    @apply py-3 mr-3 my-4
+    @apply bg-sky-400
+    @apply text-lg text-white font-bold
+    @apply rounded-full
+    .twit_button
+      @apply w-full rounded-full
+
+//aside
+.aside
+  @apply h-fit mt-8 ml-8 pb-4
+  @apply rounded-[20px]
+  @apply bg-slate-800
+
+  .aside_title
+    @apply text-lg font-bold
+    @apply text-white
+    @apply pl-7 py-3
+  .aside_content
+    .aside_item
+      @apply flex items-center
+      .aside_icon
+        @apply pl-7 py-3
+      .aside_label
+        @apply text-white
+        @apply pl-2
+        @apply font-medium
+
+// feed
+.feed
+  @apply text-white
+  .whats_happening
+    @apply flex mx-4 px-1
+    .wh_user_pic
+      img
+        @apply rounded-full w-14
+    .wh_container
+      @apply block
+      @apply w-full
+      @apply py-2 pl-3
+      .formulario
+        form
+          textarea
+            @apply w-full max-h-fit resize-none
+            @apply bg-gray-900 text-gray-400 outline-none
+            @apply placeholder:text-gray-400
+      .interactions
+        @apply flex place-content-between
+        .interact_icons
+          @apply flex
+          .interact_imgs
+            @apply pr-3
+          .interact_gifs
+        .wh_twit
+          @apply flex justify-center
+          @apply py-[0.375rem] px-3
+          @apply bg-sky-400
+          @apply text-white font-bold
+          @apply rounded-full
+          .wh_twit_button
+            @apply w-full rounded-full
+
+  .tweets
+    @apply my-4 py-3
+    .tweet_line
+      @apply border-t border-gray-400
+      .tweet_container
+        @apply flex mx-4 px-1 py-2
+        .user_pic
+          // @apply w-28
+          img
+            @apply rounded-full
+        .tweet_main
+          @apply pl-3
+          .user_info
+            @apply flex pb-1
+            .user_name
+              @apply font-bold
+            .user_atname
+              @apply pl-1
+              @apply text-gray-400
+            span
+              @apply pl-2
+              @apply text-gray-400
+            .time
+              @apply pl-2
+              @apply text-gray-400
+          .tweet_content
+          .tweet_info
+            @apply flex pt-3
+            @apply text-gray-400
+            .tweet_info_comments
+              @apply flex pr-12
+              .comments_icon
+                @apply pr-2
+              .comments_number
+            .tweet_info_retweets
+              @apply flex pr-12
+              .retweets_icon
+                @apply pr-2
+              .retweets_number
+            .tweet_info_likes
+              @apply flex pr-12
+              .likes_icon
+                @apply pr-2
+                .likes_number
