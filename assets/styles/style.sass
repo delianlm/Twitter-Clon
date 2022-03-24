@@ -9,7 +9,7 @@ body
 // layout
 .twitter
   @apply min-h-screen max-w-[1180px] w-full mx-auto
-  @apply grid grid-cols-[240px_1fr_370px] grid-rows-[auto_1fr]
+  @apply grid grid-cols-[240px_1fr_350px] grid-rows-[auto_1fr]
 
   .logo
   .title
@@ -144,9 +144,9 @@ body
       .tweet_container
         @apply flex mx-4 px-1 py-2
         .user_pic
-          // @apply w-28
+          @apply w-16 shrink-0
           img
-            @apply rounded-full
+            @apply rounded-full w-full
         .tweet_main
           @apply pl-3
           .user_info

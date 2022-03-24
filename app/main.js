@@ -6,16 +6,17 @@ import "phosphor-icons";
 // import {writeTweets} from "./writeTweets.js";
 import data from "./data.json";
 
-
 console.log(data);
 
 // Carga pagina
 
 window.addEventListener("load", () => {
   renderTweets();
-  initSearchEvent()
-  
+  initSearchEvent();
 });
+
+let filteredData = [];
+
 
 // Renderizar Tweets
 
@@ -103,8 +104,7 @@ const renderTweets = () => {
     `;
   });
   tweetsBlock.innerHTML = tweetsHTML;
-  initTweetEvents()
-
+  initTweetEvents();
 };
 
 // Inicializar tweets
@@ -116,18 +116,24 @@ const initTweetEvents = () => {
     const likes = tweet.querySelector(".likes_icon");
     likes.addEventListener("click", () => {
       data[i].tweet.likes++;
-      renderTweets();
+      if (filteredData.length > 0) {
+        renderFiltered();
+      } else {
+        renderTweets();
+      }
     });
 
     const retweets = tweet.querySelector(".retweets_icon");
     retweets.addEventListener("click", () => {
       data[i].tweet.retweets++;
-      renderTweets();
+      if (filteredData.length > 0) {
+        renderFiltered();
+      } else {
+        renderTweets();
+      }
     });
   });
 };
-
-
 
 // Filtrado de tweets por nombre
 
@@ -135,30 +141,32 @@ const initSearchEvent = () => {
   const searchInput = document.querySelector(".search_input_text");
   searchInput.addEventListener("keyup", () => {
     if (searchInput.value.length > 2) {
-      const filteredDataItem = data.filter((dataItem) =>
-      dataItem.user.name.includes(searchInput.value)
+      filteredData = data.filter((dataItem) =>
+        dataItem.user.name.toLowerCase().includes(searchInput.value.toLowerCase())
       );
 
-      if (filteredDataItem.length > 0) {
-        
-        console.log(filteredDataItem);
+      if (filteredData.length > 0) {
+        console.log(filteredData);
         renderFiltered();
-        
-
       } else {
         const tweetsBlock = document.querySelector(".tweets");
-        tweetsBlock.innerHTML = "Nothing here...";
+        tweetsBlock.innerHTML = `
+        <div class="tweet_line">
+          <div class="tweet_container">
+            
+          </div>
+        </div>
+        `
+        ;
       }
     } else {
-        renderTweets();
+      renderTweets();
     }
   });
 };
 
-
 // Render del filtrado
 
-let filteredData = []
 
 const renderFiltered = () => {
   const tweetsBlock = document.querySelector(".tweets");
@@ -169,20 +177,20 @@ const renderFiltered = () => {
       <div class="tweet_container">
       <div class="user_pic">
         <img
-          src=${filteredDataItem[i].user.pic}
+          src=${filteredDataItem.user.pic}
           alt=""
         />
       </div>
       <div class="tweet_main">
         <div class="user_info">
-          <div class="user_name">${filteredDataItem[i].user.name}</div>
-          <div class="user_atname">@${filteredDataItem[i].user.at}</div>
+          <div class="user_name">${filteredDataItem.user.name}</div>
+          <div class="user_atname">@${filteredDataItem.user.at}</div>
           <span>&#8231;</span>
-          <div class="time">${filteredDataItem[i].tweet.time}h</div>
+          <div class="time">${filteredDataItem.tweet.time}h</div>
         </div>
         <div class="tweet_content">
           <p>
-          ${filteredDataItem[i].tweet.content}
+          ${filteredDataItem.tweet.content}
           </p>
         </div>
         <div class="tweet_info">
@@ -201,7 +209,7 @@ const renderFiltered = () => {
                 />
               </svg>
             </div>
-            <div class="comments_number">${filteredDataItem[i].tweet.comments}</div>
+            <div class="comments_number">${filteredDataItem.tweet.comments}</div>
           </div>
           <div class="tweet_info_retweets">
             <div class="retweets_icon">
@@ -218,7 +226,7 @@ const renderFiltered = () => {
                 />
               </svg>
             </div>
-            <div class="retweets_number">${filteredDataItem[i].tweet.retweets}</div>
+            <div class="retweets_number">${filteredDataItem.tweet.retweets}</div>
           </div>
           <div class="tweet_info_likes">
             <div class="likes_icon">
@@ -235,7 +243,7 @@ const renderFiltered = () => {
                 />
               </svg>
             </div>
-            <div class="likes_number">${filteredDataItem[i].tweet.likes}</div>
+            <div class="likes_number">${filteredDataItem.tweet.likes}</div>
           </div>
         </div>
       </div>
@@ -244,11 +252,10 @@ const renderFiltered = () => {
     `;
   });
   tweetsBlock.innerHTML = filteredFeedHTML;
-  initTweetEvents()
-
+  initTweetEvents();
 };
 
-// Escribir Nuevo Tweet 
+// Escribir Nuevo Tweet
 
 // counterVisible = false
 // isButtonActive = false
@@ -256,4 +263,3 @@ const renderFiltered = () => {
 
 // initNewTweetEvents = () =>
 //   const newTweetText = document.querySelectorAll(".write_tweet");
- 
