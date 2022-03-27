@@ -122,27 +122,34 @@ body
             @apply bg-gray-900 text-gray-400 outline-none
             @apply placeholder:text-gray-400
       .interactions
-        @apply flex place-content-between
+        @apply flex justify-between items-center
         .interact_icons
           @apply flex
           .interact_imgs
-            @apply pr-3
+            @apply pr-3 
           .interact_gifs
         .wh_twit
-          @apply flex justify-center
-          @apply py-[0.375rem] px-3
-          @apply bg-sky-400
-          @apply text-white font-bold
-          @apply rounded-full
+          @apply flex justify-between items-center
+          .counter
+            // @apply opacity-0
+            @apply pr-3
+            &.counter_visible
+              @apply opacity-100
           .wh_twit_button
-            @apply w-full rounded-full
+            @apply py-[0.375rem] px-3
+            @apply font-bold
+            @apply rounded-full bg-sky-400 opacity-50
+            &.wh_twit_button_visible
+               @apply opacity-100
 
   .tweets
     @apply my-4 py-3
     .tweet_line
       @apply border-t border-gray-400
       .tweet_container
-        @apply flex mx-4 px-1 py-2
+        @apply flex mx-4 px-1 py-2 
+        .error_message
+          @apply text-center w-full py-2 text-gray-400
         .user_pic
           @apply w-16 shrink-0
           img
